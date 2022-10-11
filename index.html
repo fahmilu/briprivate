@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRI PRIVATE E-CALENDAR</title>
+    <link rel="stylesheet" href="assets/css/wow_book.css" type="text/css" />
+<style>
+    .wowbook-right .wowbook-gutter-shadow {
+        background-image: url("assets/imgs/page_right_background.png");
+        background-position: 0 0;
+        width: 75px;
+    }
+    .wowbook-left .wowbook-gutter-shadow {
+        background-image: url("assets/imgs/page_left_background.png");
+        opacity: 0.5;
+        width: 60px;
+    }
+    html, body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .wowbook {
+        font-family: "Open Sans","Helvetica Neue",Arial,sans-serif;
+    }
+    .wowbook-page-content {
+        padding: 1.5em;
+    }
+    .wowbook ul {
+        padding-left: 1em;
+    }
+    .book-thumb {
+        height: 150px;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.5)
+    }
+
+    .wowbook-lightbox > .wowbook-close {
+        display: none;
+    }
+
+    .lightbox-pdf  .wowbook-book-container {
+        background: #e5e5e5 url(./img/bg-lightbox-pdf.png); /* Old browsers */
+        background: #e5e5e5 -moz-radial-gradient(center, ellipse cover, #ffffff 20%, #bbbbbb 100%); /* FF3.6-15 */
+        background: #e5e5e5 -webkit-radial-gradient(center, ellipse cover, #ffffff 20%,#bbbbbb 100%); /* Chrome10-25,Safari5.1-6 */
+        background: #e5e5e5 radial-gradient(ellipse at center, #ffffff 20%,#bbbbbb 100%); /* W3C, IE10+, FF16+, Chrome26+,Opera12+, Safari7+*/
+    }
+
+
+    .lightbox-html  .wowbook-book-container {
+        background: url(img/book_html/wood.jpg);
+    }
+    .lightbox-html .wowbook-toolbar {
+        margin-top: 1em; /* FIXME */
+        box-sizing: content-box !important;
+    }
+
+    .lightbox-html .wowbook-controls {
+        border-radius: 6px;
+        width: auto;
+    }
+
+    .lightbox-html.wowbook-mobile .wowbook-toolbar {
+        margin: 0;
+    }
+
+    .lightbox-html.wowbook-mobile .wowbook-controls {
+        border-radius: 0;
+        width: 100%;
+    }
+
+
+/*		.lightbox-html .wowbook-controls {
+        border-radius: 6px;
+        width: auto;
+        background: none;
+        color: rgba(60, 20, 20, 0.8);
+        text-shadow: 0 1px 0 #fff;
+        box-shadow: none;
+    }
+    .lightbox-html .wowbook-control:hover {
+        background: none;
+        color: white;
+        text-shadow: 0 1px 0 #fff, 0 0px 5px rgba(60, 20, 20, 1);
+        text-shadow: 0 1px 0 #fff, 0 0px 3px #fff;
+    }
+*/
+    hr {
+        max-width: 450px;
+    }
+</style>
+</head>
+
+<body>
+    <div id="bookTrigger"></div>
+    <div id='showPDF'></div>
+</body>
+<script type="text/javascript" src="assets/js/jquery.js"></script>
+<script type="text/javascript" src="assets/js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="assets/js/wow.min.js"></script>
+<script type="text/javascript" type="text/javascript" src="assets/js/pdf.combined.min.js"></script>
+<script type="text/javascript" src="assets/js/wow_book.min.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        function fullscreenErrorHandler(){
+            if (self!=top) return "The frame is blocking full screen mode. Click on 'remove frame' button above and try to go full screen again."
+        }
+
+        function buildBook(){
+            var elem = '#showPDF'
+            var book= $.wowBook(elem);
+            if (!book) {
+                $(elem).wowBook(options);
+                book = $.wowBook(elem);
+            }
+
+            book.showLightbox();
+
+
+        }
+        
+        var options = {
+            height   : 1024
+            ,width    : 725*2
+            // ,maxWidth : 800
+            // ,maxHeight : 400
+            ,pageNumbers: false
+
+            ,pdf: "assets/private.pdf"
+            ,pdfFind: true
+
+            ,lightbox : "#book2-trigger"
+            ,lightboxClass : "lightbox-pdf"
+            ,centeredWhenClosed : true
+            ,hardcovers : false
+            ,curl: false
+            ,toolbar: "lastLeft, left, right, lastRight, zoomin, zoomout, download, flipsound, fullscreen, thumbnails"
+            ,thumbnailsPosition : 'bottom'
+            ,responsiveHandleWidth : 50
+            ,onFullscreenError: fullscreenErrorHandler
+       };
+
+       buildBook();
+    })
+</script>
+</html>
